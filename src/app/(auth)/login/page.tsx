@@ -1,5 +1,10 @@
 import { IoLogoDiscord } from "react-icons/io5";
 import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Login",
+};
 
 export default function Login() {
   return (
