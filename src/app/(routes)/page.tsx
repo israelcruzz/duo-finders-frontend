@@ -28,11 +28,17 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-2 xl:grid-cols-5 2xl:grid-cols-8 gap-6">
-          <GameCard />
-          <GameCard />
-          <GameCard />
-          <GameCard />
-          <GameCard />
+          {Array.from({ length: 5 }).map((_, index) => {
+            return (
+              <GameCard
+                key={index}
+                id={index.toString()}
+                title="League of Legends"
+                imageUri="/league-of-legends-image.svg"
+                countAds={index}
+              />
+            );
+          })}
         </div>
       </div>
 
