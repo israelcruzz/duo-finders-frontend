@@ -6,7 +6,13 @@ export const metadata: Metadata = {
   title: "Login",
 };
 
-export default function Login() {
+async function fakeFetchDate() {
+  return await new Promise((resolve) => setTimeout(resolve, 10000));
+}
+
+export default async function Login() {
+  await fakeFetchDate();
+
   return (
     <div className="w-full h-full xl:h-[100vh] flex flex-col p-12 xl:flex-row gap-6">
       <section className="w-full h-full flex items-center justify-center">

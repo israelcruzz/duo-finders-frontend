@@ -2,13 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface RecentAdsCardProps {
-    gameId: string
-    imageUri: string
-    title: string
-    category: string
+  gameId: string;
+  imageUri: string;
+  title: string;
+  category: string;
 }
 
-export function RecentAdsCard({ gameId, category, imageUri, title }: RecentAdsCardProps) {
+export function RecentAdsCard({
+  gameId,
+  category,
+  imageUri,
+  title,
+}: RecentAdsCardProps) {
   return (
     <div className="w-full flex justify-between">
       <div className="flex gap-2">
