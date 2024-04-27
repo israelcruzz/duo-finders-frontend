@@ -18,16 +18,16 @@ export default function RoutesLayout({
     <main
       className={`flex ${menuActive ? "mr-6" : "px-6 py-6"} justify-between`}
     >
-      <div className="relative flex">
+      <div className="relative flex items-start z-40">
         <button
-          className={`xl:hidden text-white ${menuActive && "hidden"}`}
+          className={`xl:hidden text-white ${menuActive && "hidden"} py-6`}
           onClick={() => setMenuActive(true)}
         >
           <RxDragHandleHorizontal size={32} />
         </button>
 
         <div
-          className={`absolute h-[100vh] min-w-72 bg-[#121212] flex flex-col p-6 justify-between border-r border-r-[#EFEFEF]/10 ${
+          className={` absolute h-[100vh] min-w-72 bg-[#121212] flex flex-col p-6 justify-between border-r border-r-[#EFEFEF]/10 ${
             menuActive ? "" : "hidden"
           }`}
         >
@@ -78,7 +78,7 @@ export default function RoutesLayout({
 
       {children}
 
-      <section className="min-w-24 flex items-center justify-center py-4 xl:py-4">
+      <section className="h-full min-w-24 flex justify-center py-4 xl:py-4">
         <Link href="/profile">
           <Image
             src="/avatar.svg"
