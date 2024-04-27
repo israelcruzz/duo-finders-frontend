@@ -67,9 +67,17 @@ export default function Home() {
             Anúncios Recentes
           </h1>
           <div className="flex flex-col gap-3">
-            <RecentAdsCard />
-            <RecentAdsCard />
-            <RecentAdsCard />
+            {Array.from({ length: 3 }).map((_, index) => {
+              return (
+                <RecentAdsCard
+                  key={index}
+                  category="MMORPG"
+                  gameId={index.toString()}
+                  imageUri="/league-of-legends-image.svg"
+                  title="League of Legends"
+                />
+              );
+            })}
           </div>
         </div>
       </div>
