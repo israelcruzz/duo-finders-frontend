@@ -1,4 +1,8 @@
+"use client";
+
 import Image from "next/image";
+import * as Dialog from "@radix-ui/react-dialog";
+import CreateAdModal from "../create-ad-modal";
 
 export function CreateAdPoster() {
   return (
@@ -16,10 +20,17 @@ export function CreateAdPoster() {
         <span>SEU DUO </span>
         <span>AGORA</span>
       </h1>
-
-      <button className="absolute top-12 m-4 text-white text-[8px] bg-[#650C71] px-2 py-1 rounded-lg font-semibold xl:top-40 xl:m-12 xl:px-6 xl:py-2 xl:text-xs">
-        CRIAR ANUNCIO
-      </button>
-    </div>
+        <Dialog.Root>
+          <Dialog.Trigger asChild>
+            <button className="absolute top-12 m-4 text-white text-[8px] bg-[#650C71] px-2 py-1 rounded-lg font-semibold xl:top-40 xl:m-12 xl:px-6 xl:py-2 xl:text-xs">
+              CRIAR ANUNCIO
+            </button>
+          </Dialog.Trigger>
+          <Dialog.Portal>
+            <Dialog.Overlay className="inset-0 fixed bg-black/60 z-40" />
+            <CreateAdModal />
+          </Dialog.Portal>
+        </Dialog.Root>
+      </div>
   );
 }

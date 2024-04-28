@@ -18,7 +18,7 @@ export default function RoutesLayout({
     <main
       className={`flex ${menuActive ? "mr-6" : "px-6 py-6"} justify-between`}
     >
-      <div className="relative flex items-start z-50">
+      <div className="relative flex items-start z-40">
         <button
           className={`xl:hidden text-white ${menuActive && "hidden"} py-6`}
           onClick={() => setMenuActive(true)}
@@ -41,7 +41,7 @@ export default function RoutesLayout({
                   alt="logo duofinders"
                 />
                 <h1 className="text-white text-base font-semibold">
-                  Duofinders
+                  DuoFinders
                 </h1>
               </div>
 
