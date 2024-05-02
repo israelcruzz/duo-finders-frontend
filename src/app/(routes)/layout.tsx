@@ -7,12 +7,17 @@ import { HiOutlineLogout } from "react-icons/hi";
 import { IoCloseOutline } from "react-icons/io5";
 import { RxDragHandleHorizontal } from "react-icons/rx";
 
+type pagesInAplication = "home" | "games";
+
 export default function RoutesLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const [menuActive, setMenuActive] = useState<boolean>(true);
+  const [pageActive, setPageActive] = useState<pagesInAplication>("home");
+
+  console.log(pageActive);
 
   return (
     <main
@@ -54,14 +59,26 @@ export default function RoutesLayout({
             </div>
 
             <div className="flex flex-col gap-3">
-              <Link href="/">
-                <nav className="p-4 text-white flex gap-2 font-medium bg-[#650C71] rounded-lg hover:bg-[#650C71]/90">
+              <Link href="/" onClick={() => setPageActive("home")}>
+                <nav
+                  className={`p-4 text-white flex gap-2 font-medium rounded-lg ${
+                    pageActive === "home"
+                      ? "bg-[#650C71] hover:bg-[#650C71]/90"
+                      : "bg-transparent hover:bg-black/20"
+                  }`}
+                >
                   Home
                 </nav>
               </Link>
 
-              <Link href="/games">
-                <nav className="p-4 text-white flex gap-2 font-medium rounded-lg hover:bg-black/20">
+              <Link href="/games" onClick={() => setPageActive("games")}>
+                <nav
+                  className={`p-4 text-white flex gap-2 font-medium rounded-lg ${
+                    pageActive === "games"
+                      ? "bg-[#650C71] hover:bg-[#650C71]/90"
+                      : "bg-transparent hover:bg-black/20"
+                  }`}
+                >
                   Games
                 </nav>
               </Link>
