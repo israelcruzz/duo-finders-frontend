@@ -17,8 +17,6 @@ export default function RoutesLayout({
   const [menuActive, setMenuActive] = useState<boolean>(true);
   const [pageActive, setPageActive] = useState<pagesInAplication>("home");
 
-  console.log(pageActive);
-
   return (
     <main
       className={`flex ${menuActive ? "mr-6" : "px-6 py-6"} justify-between`}
