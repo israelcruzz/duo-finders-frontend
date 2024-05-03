@@ -46,7 +46,7 @@ export default function MeAd({
         </h2>
         <h1
           className={`font-bold text-sm text-white ${
-            useVoiceChannel ? "text-emerald-500" : "text-red-700"
+            useVoiceChannel ? "text-green-400" : "text-red-700"
           }`}
         >
           {useVoiceChannel ? "Sim" : "Não"}

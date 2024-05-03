@@ -1,3 +1,4 @@
+import MeAd from "@/components/me-ad";
 import Image from "next/image";
 
 export default function Profile() {
@@ -25,9 +26,26 @@ export default function Profile() {
         </div>
       </div>
 
-      <section className="mt-12">
+      <section className="mt-12 flex flex-col gap-6">
         <h1 className="text-white text-2xl font-semibold ">Meus Anúncios</h1>
-        
+
+        <div className="grid grid-cols-2 xl:grid-cols-4 gap-6">
+          {Array.from({ length: 24 }).map((_, index) => {
+            return (
+              <MeAd
+                id={index.toString()}
+                key={index}
+                gameName="Fortnite"
+                hourEnd={2}
+                hourStart={22}
+                name="israel"
+                useVoiceChannel={index > 5}
+                weekDays="ter,qua"
+                yearsPlaying={8}
+              />
+            );
+          })}
+        </div>
       </section>
     </main>
   );
