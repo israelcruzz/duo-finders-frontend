@@ -1,15 +1,13 @@
 import Image from "next/image";
 import { Metadata } from "next";
 import { LoginButton } from "@/components/login-button";
-import { getServerSession } from "next-auth";
-import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export const metadata: Metadata = {
   title: "Login",
 };
 
 async function fakeFetchDate() {
-  return await new Promise((resolve) => setTimeout(resolve, 2));
+  return await new Promise((resolve) => setTimeout(resolve, 2000));
 }
 
 export default async function Login() {
