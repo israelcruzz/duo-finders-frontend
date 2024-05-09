@@ -12,6 +12,7 @@
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-popover": "1.0.7",
     "next": "14.2.3",
+    "next-auth": "^4.24.7",
     "radix": "^0.0.0",
     "react": "^18",
     "react-dom": "^18",

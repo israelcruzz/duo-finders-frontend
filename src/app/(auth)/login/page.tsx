@@ -1,13 +1,15 @@
-import { IoLogoDiscord } from "react-icons/io5";
 import Image from "next/image";
 import { Metadata } from "next";
+import { LoginButton } from "@/components/login-button";
+import { getServerSession } from "next-auth";
+import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export const metadata: Metadata = {
   title: "Login",
 };
 
 async function fakeFetchDate() {
-  return await new Promise((resolve) => setTimeout(resolve, 10000));
+  return await new Promise((resolve) => setTimeout(resolve, 2));
 }
 
 export default async function Login() {
@@ -37,10 +39,7 @@ export default async function Login() {
           pricing, and exceptional user experience.
         </p>
 
-        <button className="w-full bg-[#282B30] p-3 text-base flex items-center justify-center text-white font-bold gap-3 rounded hover:bg-[#282B30]/90">
-          <IoLogoDiscord size={24} />
-          Continuar com o Discord
-        </button>
+        <LoginButton />
       </section>
     </div>
   );
