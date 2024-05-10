@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "@/app/global.css";
 import NextAuthSessionProvider from "@/providers/session";
 import { ReactNode } from "react";
+import { AuthProvider } from "@/context/auth-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-[#121212]`}>
-        <NextAuthSessionProvider>{children}</NextAuthSessionProvider>
+        <AuthProvider>
+          <NextAuthSessionProvider>{children}</NextAuthSessionProvider>
+        </AuthProvider>
       </body>
     </html>
   );

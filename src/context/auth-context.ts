@@ -4,4 +4,4 @@ interface IAuthContext {
   auth: () => Promise<void>;
 }
 
-const AuthContext = createContext({} as IAuthContext);
+export const AuthContext = createContext({} as IAuthContext);
