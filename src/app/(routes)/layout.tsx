@@ -9,6 +9,8 @@ import { RxDragHandleHorizontal } from "react-icons/rx";
 
 type pagesInAplication = "home" | "games";
 
+
+
 export default function RoutesLayout({
   children,
 }: {
@@ -19,11 +21,11 @@ export default function RoutesLayout({
 
   return (
     <main
-      className={`flex ${menuActive ? "mr-6" : "px-6 py-6"} justify-between`}
+      className={`flex mr-6  justify-between`}
     >
       <div className="relative flex items-start z-40">
         <button
-          className={`xl:hidden text-white ${menuActive && "hidden"} py-6`}
+          className={`ml-6 xl:ml-0 text-white py-6`}
           onClick={() => setMenuActive(true)}
         >
           <RxDragHandleHorizontal size={32} />
