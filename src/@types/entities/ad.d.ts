@@ -1,5 +1,5 @@
 export interface IAd {
-  id: string;
+  id?: string;
   name: string;
   yearPlaying: number;
   discord: string;
