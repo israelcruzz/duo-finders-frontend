@@ -17,6 +17,8 @@ export async function AuthProvider({ children }: AuthProviderProps) {
     signIn();
 
     const { data } = useSession();
+
+    
   };
 
   return (
