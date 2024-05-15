@@ -1,5 +1,6 @@
 "use client";
 
+import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -8,8 +9,6 @@ import { IoCloseOutline } from "react-icons/io5";
 import { RxDragHandleHorizontal } from "react-icons/rx";
 
 type pagesInAplication = "home" | "games";
-
-
 
 export default function RoutesLayout({
   children,
@@ -20,9 +19,7 @@ export default function RoutesLayout({
   const [pageActive, setPageActive] = useState<pagesInAplication>("home");
 
   return (
-    <main
-      className={`flex mr-6  justify-between`}
-    >
+    <main className={`flex mr-6  justify-between`}>
       <div className="relative flex items-start z-40">
         <button
           className={`ml-6 xl:ml-0 text-white py-6`}
@@ -85,7 +82,7 @@ export default function RoutesLayout({
             </div>
           </section>
           <section>
-            <button className="text-white flex gap-3">
+            <button className="text-white flex gap-3" onClick={() => signOut()}>
               <HiOutlineLogout size={24} />
               <h1 className="text-base">Logout</h1>
             </button>

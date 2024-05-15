@@ -3,8 +3,11 @@ import { GameCard } from "@/components/game-card";
 import { RecentAdsCard } from "@/components/recent-ads-card";
 import { SearchInput } from "@/components/search-input";
 import { Metadata } from "next";
+import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+
 
 export const metadata: Metadata = {
   title: "Home",

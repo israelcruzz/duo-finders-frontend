@@ -25,24 +25,28 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const auth = async () => {
     signIn();
 
-    const { data } = useSession();
+    // const { data } = useSession();
 
-    try {
-      const { token, user } = (await api.post("/auth", {
-        name: data?.user?.name,
-        avatar: data?.user?.image,
-        banner: data?.user?.image,
-        discord: data?.user?.name,
-      })) as ResponseApiAuth;
+    // try {
+    //   if (data?.user) {
+    //     const { token, user: user } = (await api.post("/auth", {
+    //       name: data.user.name,
+    //       avatar: data.user.image,
+    //       banner: data.user.image,
+    //       discord: data.user.name,
+    //     })) as ResponseApiAuth;
 
-      localStorage.setItem("@user-duofinders", JSON.stringify(user));
-      localStorage.setItem("@token-duofinders", token);
+    //     localStorage.setItem("@user-duofinders", JSON.stringify(user));
+    //     localStorage.setItem("@token-duofinders", token);
 
-      setToken(token);
-      setUser(user);
-    } catch (error) {
-      console.log("Error: " + error);
-    }
+    //     setToken(token);
+    //     setUser(user);
+    //   } else {
+    //     console.log("not user...");
+    //   }
+    // } catch (error) {
+    //   console.log("Error: " + error);
+    // }
   };
 
   return (
