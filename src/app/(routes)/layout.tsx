@@ -1,5 +1,6 @@
 "use client";
 
+import { LogoutButton } from "@/components/logout-button";
 import { useAuth } from "@/context/auth-provider";
 import { nextAuthOptions } from "@/lib/next-auth/next-auth-options";
 import { getServerSession } from "next-auth";
@@ -88,10 +89,7 @@ export default function RoutesLayout({
             </div>
           </section>
           <section>
-            <button className="text-white flex gap-3" onClick={() => signOut()}>
-              <HiOutlineLogout size={24} />
-              <h1 className="text-base">Logout</h1>
-            </button>
+            <LogoutButton />
           </section>
         </div>
       </div>
