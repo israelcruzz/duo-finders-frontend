@@ -3,6 +3,7 @@
 import { IoLogoDiscord } from "react-icons/io5";
 
 import { useAuth } from "@/context/auth-provider";
+import { signIn } from "next-auth/react";
 
 export function LoginButton() {
   const { auth } = useAuth();

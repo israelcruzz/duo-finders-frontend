@@ -6,6 +6,8 @@ import { AuthContext } from "./auth-context";
 import { signIn, useSession } from "next-auth/react";
 import { IUser } from "@/@types/entities/user";
 import { api } from "@/services/api";
+import { getServerSession } from "next-auth";
+import { nextAuthOptions } from "@/lib/next-auth/next-auth-options";
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -20,10 +22,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<IUser>();
   const [token, setToken] = useState<string>();
 
-  console.log(user);
-
   const auth = async () => {
     signIn();
+
+    const session = (await getServerSession(nextAuthOptions)) as IUser;
+    setUser(session);
 
     // const { data } = useSession();
 
@@ -50,7 +53,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
   };
 
   return (
-    <AuthContext.Provider value={{ auth }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ auth, user }}>
+      {children}
+    </AuthContext.Provider>
   );
 }
 

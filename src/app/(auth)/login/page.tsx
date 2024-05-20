@@ -1,6 +1,10 @@
 import Image from "next/image";
 import { Metadata } from "next";
 import { LoginButton } from "@/components/login-button";
+import { getServerSession } from "next-auth";
+import { nextAuthOptions } from "@/lib/next-auth/next-auth-options";
+import { redirect } from "next/navigation";
+import { useAuth } from "@/context/auth-provider";
 
 export const metadata: Metadata = {
   title: "Login",
@@ -12,6 +16,12 @@ async function fakeFetchDate() {
 
 export default async function Login() {
   await fakeFetchDate();
+
+  const session = await getServerSession(nextAuthOptions);
+
+  if (session) {
+    redirect("/");
+  }
 
   return (
     <div className="w-full h-full xl:h-[100vh] flex flex-col p-12 xl:flex-row gap-6">

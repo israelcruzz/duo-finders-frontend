@@ -1,5 +1,8 @@
 "use client";
 
+import { useAuth } from "@/context/auth-provider";
+import { nextAuthOptions } from "@/lib/next-auth/next-auth-options";
+import { getServerSession } from "next-auth";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,6 +20,9 @@ export default function RoutesLayout({
 }) {
   const [menuActive, setMenuActive] = useState<boolean>(true);
   const [pageActive, setPageActive] = useState<pagesInAplication>("home");
+  7;
+
+  const { user } = useAuth();
 
   return (
     <main className={`flex mr-6  justify-between`}>
@@ -37,7 +43,7 @@ export default function RoutesLayout({
             <div className="flex gap-2 items-center justify-between">
               <div className="flex items-center gap-2">
                 <Image
-                  src="/logo.svg"
+                  src={user?.avatar ?? "/logo.svg"}
                   width={40}
                   height={40}
                   alt="logo duofinders"
