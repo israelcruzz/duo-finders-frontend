@@ -1,3 +1,4 @@
+import { env } from "@/utils/env/env";
 import NextAuth, { NextAuthOptions, Session } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import Discord from "next-auth/providers/discord";
@@ -6,9 +7,9 @@ import { DiscordProfile } from "next-auth/providers/discord";
 export const nextAuthOptions: NextAuthOptions = {
   providers: [
     Discord({
-      clientId: process.env.NEXT_PUBLIC_CLIENT_ID as string,
-      clientSecret: process.env.NEXT_PUBLIC_SECRET_KEY as string,
-      authorization: process.env.NEXT_PUBLIC_AUTH_LINK as string,
+      clientId: env?.NEXT_PUBLIC_CLIENT_ID as string,
+      clientSecret: env?.NEXT_PUBLIC_SECRET_KEY as string,
+      authorization: env?.NEXT_PUBLIC_AUTH_LINK as string,
       profile(profile: DiscordProfile) {
         return {
           id: profile.id.toString(),
@@ -33,7 +34,7 @@ export const nextAuthOptions: NextAuthOptions = {
 
       return discordUser;
     },
-    
+
     async jwt({ account, token, profile }) {
       if (account) {
         token.discordProfile = profile as DiscordProfile;
@@ -53,4 +54,3 @@ export const nextAuthOptions: NextAuthOptions = {
     },
   },
 };
-
