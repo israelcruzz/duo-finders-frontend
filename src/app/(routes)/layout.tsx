@@ -1,14 +1,12 @@
 "use client";
 
+import { Avatar } from "@/components/avatar";
 import { LogoutButton } from "@/components/logout-button";
 
-import { nextAuthOptions } from "@/lib/next-auth/next-auth-options";
 import { getServerSession } from "next-auth";
-import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import { HiOutlineLogout } from "react-icons/hi";
 import { IoCloseOutline } from "react-icons/io5";
 import { RxDragHandleHorizontal } from "react-icons/rx";
 
@@ -41,12 +39,7 @@ export default function RoutesLayout({
           <section className="flex flex-col gap-6 flex-1">
             <div className="flex gap-2 items-center justify-between">
               <div className="flex items-center gap-2">
-                <Image
-                  src={"/logo.svg"}
-                  width={40}
-                  height={40}
-                  alt="logo duofinders"
-                />
+                <Avatar />
                 <h1 className="text-white text-base font-semibold">
                   DuoFinders
                 </h1>
