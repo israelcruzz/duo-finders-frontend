@@ -1,15 +1,8 @@
-import { IUser } from "@/@types/entities/user";
 import { api } from "@/services/api";
-import { env } from "@/utils/env/env";
-import NextAuth, { NextAuthOptions, Session } from "next-auth";
+import { NextAuthOptions, Session } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import Discord from "next-auth/providers/discord";
 import { DiscordProfile } from "next-auth/providers/discord";
-
-interface ResponseApiAuth {
-  token: string;
-  user: IUser;
-}
 
 export const nextAuthOptions: NextAuthOptions = {
   providers: [
@@ -55,18 +48,27 @@ export const nextAuthOptions: NextAuthOptions = {
 
       if (session.user) {
         try {
-          const { token: tokenApi, user } = (await api.post("/auth", {
-            name: session.user.username,
-            avatar: session.user.avatar,
-            banner: session.user.discordProfile?.banner_color,
-            discord: session.user.discordProfile?.username,
-          })) as ResponseApiAuth;
+          const data = await fetch("http://localhost:3333/auth", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: session.user.discordProfile.username,
+              avatar: session.user.discordProfile.avatar,
+              banner: session.user.discordProfile.banner_color,
+              discord: session.user.discordProfile.username,
+            }),
+          });
 
-          session.token = tokenApi;
-          session.userApi = user;
+          const response = await data.json();
+
+          api.defaults.headers.common[
+            "Authorization"
+          ] = `Bearer ${response.token}`;
+
+          session.token = response.token;
+          session.userApi = response.user;
         } catch (error) {
           console.log(`Error Session: ${error}`);
-          
         }
       }
       return session;

@@ -4,7 +4,6 @@ import { LoginButton } from "@/components/login-button";
 import { getServerSession } from "next-auth";
 import { nextAuthOptions } from "@/lib/next-auth/next-auth-options";
 import { redirect } from "next/navigation";
-import { useAuth } from "@/context/auth-provider";
 
 export const metadata: Metadata = {
   title: "Login",

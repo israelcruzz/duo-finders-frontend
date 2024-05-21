@@ -1,7 +1,7 @@
 "use client";
 
 import { LogoutButton } from "@/components/logout-button";
-import { useAuth } from "@/context/auth-provider";
+
 import { nextAuthOptions } from "@/lib/next-auth/next-auth-options";
 import { getServerSession } from "next-auth";
 import { signOut } from "next-auth/react";
@@ -23,8 +23,6 @@ export default function RoutesLayout({
   const [pageActive, setPageActive] = useState<pagesInAplication>("home");
   7;
 
-  const { user } = useAuth();
-
   return (
     <main className={`flex mr-6  justify-between`}>
       <div className="relative flex items-start z-40">
@@ -44,7 +42,7 @@ export default function RoutesLayout({
             <div className="flex gap-2 items-center justify-between">
               <div className="flex items-center gap-2">
                 <Image
-                  src={user?.avatar ?? "/logo.svg"}
+                  src={"/logo.svg"}
                   width={40}
                   height={40}
                   alt="logo duofinders"
