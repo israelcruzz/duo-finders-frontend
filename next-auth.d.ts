@@ -1,3 +1,4 @@
+import { IUser } from "@/@types/entities/user";
 import NextAuth from "next-auth";
 import { DiscordProfile } from "next-auth/providers/discord";
 
@@ -10,5 +11,7 @@ declare module "next-auth" {
       avatar: string;
       discordProfile: DiscordProfile;
     };
+    userApi: IUser;
+    token: string;
   }
 }
