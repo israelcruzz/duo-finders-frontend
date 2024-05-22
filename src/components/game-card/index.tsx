@@ -17,7 +17,7 @@ export function GameCard({ id, title, countAds, imageUri }: GameCardProps) {
         width={167}
         height={94}
         alt="game card"
-        className="rounded-lg"
+        className="rounded-lg object-cover"
       />
       <h1 className="font-medium text-white mt-2">{title}</h1>
       <span className="font-normal text-[#C4C4C4]">
