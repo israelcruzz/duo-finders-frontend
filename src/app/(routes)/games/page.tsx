@@ -23,7 +23,7 @@ export default async function Games() {
     <main className="w-full h-full px-6 py-4 xl:pl-80 xl:py-4 flex flex-col gap-6">
       <SearchInput />
 
-      <div className="grid grid-cols-2 xl:grid-cols-4 gap-y-36 gap-x-6 xl:gap-y-40">
+      <div className="grid grid-cols-2 xl:grid-cols-4 gap-6 ">
         {games.data.map((game, index) => {
           return (
             <GameCard

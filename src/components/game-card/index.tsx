@@ -14,10 +14,10 @@ export function GameCard({ id, title, countAds, imageUri }: GameCardProps) {
       <Image
         src={imageUri}
         quality={100}
-        width={167}
-        height={94}
+        width={384}
+        height={96}
         alt="game card"
-        className="rounded-lg object-cover"
+        className="rounded-lg object-cover w-96 h-24"
       />
       <h1 className="font-medium text-white mt-2">{title}</h1>
       <span className="font-normal text-[#C4C4C4]">
