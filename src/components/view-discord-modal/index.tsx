@@ -3,10 +3,10 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 
 interface ViewDiscordModalProps {
-  id: string;
+  name: string;
 }
 
-export default function ViewDiscordModal({ id }: ViewDiscordModalProps) {
+export default function ViewDiscordModal({ name }: ViewDiscordModalProps) {
   return (
     <Dialog.Content className="bg-[#2A2634] px-[40px] py-8 rounded-lg fixed inset-0 md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:max-w-[311px] md:rounded-md flex flex-col overflow-hidden z-50">
       <div className="w-full h-full items-center justify-center flex flex-col">
@@ -20,7 +20,7 @@ export default function ViewDiscordModal({ id }: ViewDiscordModalProps) {
           Adicione no Discord
         </h3>
 
-        <div className="w-full px-4 py-3 bg-[#18181B] text-white text-center">Israel#1412</div>
+        <div className="w-full px-4 py-3 bg-[#18181B] text-white text-center">@{name}</div>
       </div>
     </Dialog.Content>
   );

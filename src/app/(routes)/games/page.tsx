@@ -3,7 +3,7 @@ import { GameCard } from "@/components/game-card";
 import { SearchInput } from "@/components/search-input";
 import { api } from "@/services/api";
 
-interface fetchGamesRequest {
+export interface fetchGamesRequest {
   data: IGame[];
 }
 
