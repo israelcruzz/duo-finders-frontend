@@ -57,7 +57,7 @@ export default async function Profile() {
         <h1 className="text-white text-2xl font-semibold ">Meus Anúncios</h1>
 
         {ads.data.length === 0 ? (
-          <h1 className="text-white">Você não possui anúncios</h1>
+          <h1 className="text-white">Você não possui anúncios.</h1>
         ) : (
           <div className="grid grid-cols-2 xl:grid-cols-4 gap-6">
             {ads.data.map((ad, index) => {

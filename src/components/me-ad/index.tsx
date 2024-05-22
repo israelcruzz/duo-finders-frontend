@@ -1,5 +1,7 @@
 "use client";
 
+import { api } from "@/services/api";
+
 interface MeAdProps {
   id: string;
   name: string;
@@ -21,6 +23,11 @@ export default function MeAd({
   useVoiceChannel,
   gameName,
 }: MeAdProps) {
+
+  const removeAd = async () => {
+    await api.post(`/user/delete/${id}`)
+  }
+
   return (
     <main className="bg-[#2A2634] px-4 py-6 rounded-lg flex flex-col gap-3">
       <div className="flex flex-col">
@@ -52,7 +59,7 @@ export default function MeAd({
           {useVoiceChannel ? "Sim" : "Não"}
         </h1>
       </div>
-      <button className="bg-red-600 w-full py-3 text-white flex items-center justify-center font-semibold rounded-lg">
+      <button className="bg-red-600 w-full py-3 text-white flex items-center justify-center font-semibold rounded-lg" onClick={() => removeAd()}>
         Apagar
       </button>
     </main>
