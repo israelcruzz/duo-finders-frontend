@@ -14,9 +14,6 @@ const fetchGames = async () => {
 };
 
 export default async function Games() {
-  console.log(api.defaults.headers.common["Authorization"]);
-  
-
   const games = await fetchGames();
 
   return (

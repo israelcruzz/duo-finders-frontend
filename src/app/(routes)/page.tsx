@@ -1,4 +1,5 @@
 import { IAd } from "@/@types/entities/ad";
+import { ICategory } from "@/@types/entities/category";
 import { IGame } from "@/@types/entities/game";
 import { CreateAdPoster } from "@/components/create-ad-poster";
 import { GameCard } from "@/components/game-card";
@@ -11,6 +12,7 @@ import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { fetchGamesRequest } from "./games/page";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -36,6 +38,12 @@ const fetchRecentAds = async () => {
   return ads;
 };
 
+const fetchGames = async () => {
+  const games: fetchGamesRequest = await api.get("/games");
+
+  return games.data;
+};
+
 export default async function Home() {
   const session = await getServerSession(nextAuthOptions);
 
@@ -45,12 +53,14 @@ export default async function Home() {
 
   const famousGames = await fetchFamousGames();
   const recentAds = await fetchRecentAds();
+  const games = await fetchGames();
+  
 
   return (
     <main className="w-full h-full px-6 py-4 xl:pl-80 xl:py-4 flex flex-col gap-6">
       <SearchInput />
 
-      <CreateAdPoster />
+      <CreateAdPoster games={games} />
 
       <div className="w-full flex flex-col gap-6">
         <div className="w-full flex justify-between items-center">

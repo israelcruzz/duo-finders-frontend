@@ -3,10 +3,15 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { IoGameController } from "react-icons/io5";
 import { FaCheck } from "react-icons/fa6";
 import { useState } from "react";
+import { IGame } from "@/@types/entities/game";
 
-export default function CreateAdModal() {
+interface CreateAdModalProps {
+  games: IGame[];
+}
+
+export default function CreateAdModal({ games }: CreateAdModalProps) {
   const [useVoiceChannel, setUseVoiceChannel] = useState<boolean>(false);
-  const [weekDays, setWeekDays] = useState<string[]>([])
+  const [weekDays, setWeekDays] = useState<string[]>([]);
 
   const handleUseVoiceChannel = () => {
     setUseVoiceChannel((prev) => {
@@ -19,13 +24,13 @@ export default function CreateAdModal() {
   };
 
   const handleWeekDays = (day: string) => {
-    if(weekDays.includes(day)){
-      const filteredWeekDays = weekDays.filter((days) => days !== day)
-      return setWeekDays(filteredWeekDays)
+    if (weekDays.includes(day)) {
+      const filteredWeekDays = weekDays.filter((days) => days !== day);
+      return setWeekDays(filteredWeekDays);
     }
 
-    setWeekDays((prev) => [...prev, day])
-  }  
+    setWeekDays((prev) => [...prev, day]);
+  };
 
   return (
     <Dialog.Content className="bg-[#2A2634] px-[40px] py-8 rounded-lg fixed inset-0 md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:max-w-[640px] md:w-full md:h-[95vh] md:rounded-md flex flex-col overflow-hidden z-50">
@@ -46,7 +51,14 @@ export default function CreateAdModal() {
         <option defaultValue="Selecione" unselectable="off">
           Selecione o game que deseja jogar
         </option>
-        <option value="Fortnite">Fortnite</option>
+
+        {games.map((game, index) => {
+          return (
+            <option key={index} value={game.id}>
+              {game.name}
+            </option>
+          );
+        })}
       </select>
 
       <label
@@ -106,8 +118,10 @@ export default function CreateAdModal() {
           <div className="w-full flex gap-1">
             <label
               htmlFor="seg"
-              className={`w-10 h-[50px] ${weekDays.includes('seg') ? 'bg-[#650C71]' : 'bg-[#282B30]'} flex items-center justify-center rounded font-semibold text-white cursor-pointer`}
-              onChange={() => handleWeekDays('seg')}
+              className={`w-10 h-[50px] ${
+                weekDays.includes("seg") ? "bg-[#650C71]" : "bg-[#282B30]"
+              } flex items-center justify-center rounded font-semibold text-white cursor-pointer`}
+              onChange={() => handleWeekDays("seg")}
               title="Segunda-Feira"
             >
               S
@@ -116,8 +130,10 @@ export default function CreateAdModal() {
 
             <label
               htmlFor="ter"
-              className={`w-10 h-[50px] ${weekDays.includes('ter') ? 'bg-[#650C71]' : 'bg-[#282B30]'} flex items-center justify-center rounded font-semibold text-white cursor-pointer`}
-              onChange={() => handleWeekDays('ter')}
+              className={`w-10 h-[50px] ${
+                weekDays.includes("ter") ? "bg-[#650C71]" : "bg-[#282B30]"
+              } flex items-center justify-center rounded font-semibold text-white cursor-pointer`}
+              onChange={() => handleWeekDays("ter")}
               title="Terça-Feira"
             >
               T
@@ -126,8 +142,10 @@ export default function CreateAdModal() {
 
             <label
               htmlFor="qua"
-              className={`w-10 h-[50px] ${weekDays.includes('qua') ? 'bg-[#650C71]' : 'bg-[#282B30]'} flex items-center justify-center rounded font-semibold text-white cursor-pointer`}
-              onChange={() => handleWeekDays('qua')}
+              className={`w-10 h-[50px] ${
+                weekDays.includes("qua") ? "bg-[#650C71]" : "bg-[#282B30]"
+              } flex items-center justify-center rounded font-semibold text-white cursor-pointer`}
+              onChange={() => handleWeekDays("qua")}
               title="Quarta-Feira"
             >
               Q
@@ -136,8 +154,10 @@ export default function CreateAdModal() {
 
             <label
               htmlFor="qui"
-              className={`w-10 h-[50px] ${weekDays.includes('qui') ? 'bg-[#650C71]' : 'bg-[#282B30]'} flex items-center justify-center rounded font-semibold text-white cursor-pointer`}
-              onChange={() => handleWeekDays('qui')}
+              className={`w-10 h-[50px] ${
+                weekDays.includes("qui") ? "bg-[#650C71]" : "bg-[#282B30]"
+              } flex items-center justify-center rounded font-semibold text-white cursor-pointer`}
+              onChange={() => handleWeekDays("qui")}
               title="Quinta-Feira"
             >
               Q
@@ -146,8 +166,10 @@ export default function CreateAdModal() {
 
             <label
               htmlFor="sex"
-              className={`w-10 h-[50px] ${weekDays.includes('sex') ? 'bg-[#650C71]' : 'bg-[#282B30]'} flex items-center justify-center rounded font-semibold text-white cursor-pointer`}
-              onChange={() => handleWeekDays('sex')}
+              className={`w-10 h-[50px] ${
+                weekDays.includes("sex") ? "bg-[#650C71]" : "bg-[#282B30]"
+              } flex items-center justify-center rounded font-semibold text-white cursor-pointer`}
+              onChange={() => handleWeekDays("sex")}
               title="Sexta-Feira"
             >
               S
