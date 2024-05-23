@@ -6,5 +6,10 @@ export interface IGame {
   image: string;
   description: string;
   categoryId: string;
+  countAds?: number;
+  category?: {
+    id: string;
+    name: string;
+  };
   ads: IAd[];
 }

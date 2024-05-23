@@ -1,8 +1,11 @@
+import { IAd } from "@/@types/entities/ad";
+import { IGame } from "@/@types/entities/game";
 import { CreateAdPoster } from "@/components/create-ad-poster";
 import { GameCard } from "@/components/game-card";
 import { RecentAdsCard } from "@/components/recent-ads-card";
 import { SearchInput } from "@/components/search-input";
 import { nextAuthOptions } from "@/lib/next-auth/next-auth-options";
+import { api } from "@/services/api";
 import { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
@@ -13,12 +16,35 @@ export const metadata: Metadata = {
   title: "Home",
 };
 
+interface fetchFamousGamesRequest {
+  data: IGame[];
+}
+
+interface fetchRecentAdsRequest {
+  data: IAd[];
+}
+
+const fetchFamousGames = async () => {
+  const games: fetchFamousGamesRequest = await api.get("/famous/game");
+
+  return games;
+};
+
+const fetchRecentAds = async () => {
+  const ads: fetchRecentAdsRequest = await api.get("/ad/recents");
+
+  return ads;
+};
+
 export default async function Home() {
   const session = await getServerSession(nextAuthOptions);
 
   if (!session) {
     redirect("/login");
   }
+
+  const famousGames = await fetchFamousGames();
+  const recentAds = await fetchRecentAds();
 
   return (
     <main className="w-full h-full px-6 py-4 xl:pl-80 xl:py-4 flex flex-col gap-6">
@@ -37,14 +63,14 @@ export default async function Home() {
         </div>
 
         <div className="grid grid-cols-2 xl:grid-cols-5 2xl:grid-cols-8 gap-8">
-          {Array.from({ length: 5 }).map((_, index) => {
+          {famousGames.data.slice(0, 5).map((game, index) => {
             return (
               <GameCard
                 key={index}
-                id={index.toString()}
-                title="League of Legends"
-                imageUri="/league-of-legends-image.svg"
-                countAds={index}
+                id={game.id.toString()}
+                title={game.name}
+                imageUri={game.image}
+                countAds={game.countAds ?? 0}
               />
             );
           })}
@@ -76,14 +102,14 @@ export default async function Home() {
             Anúncios Recentes
           </h1>
           <div className="flex flex-col gap-3">
-            {Array.from({ length: 3 }).map((_, index) => {
+            {famousGames.data.slice(0, 3).map((game, index) => {
               return (
                 <RecentAdsCard
                   key={index}
-                  category="MMORPG"
-                  gameId={index.toString()}
-                  imageUri="/league-of-legends-image.svg"
-                  title="League of Legends"
+                  category={game.category?.name ?? "Nenhuma"}
+                  gameId={game.id}
+                  imageUri={game.image}
+                  title={game.name}
                 />
               );
             })}

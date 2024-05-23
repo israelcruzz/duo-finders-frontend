@@ -67,26 +67,31 @@ export default async function ViewAdsForGame({ params }: ViewAdsForGameParams) {
       </div>
 
       <h1 className="text-white text-2xl font-semibold">Anúncios</h1>
-      <div className="grid grid-cols-2 xl:grid-cols-4 gap-6">
-        {gameAds.data.map((ad, index) => {
-          return (
-            <Ad
-              key={index}
-              hoursStart={ad.hoursStart}
-              hoursEnd={ad.hoursEnd}
-              id={ad.id}
-              name={ad.name}
-              useVoiceChannel={ad.useVoiceChannel}
-              weekDays={ad.weekDays}
-              yearPlaying={ad.yearPlaying}
-              createdAt={ad.createdAt}
-              discord={ad.discord}
-              gameId={ad.gameId}
-              userId={ad.userId}
-            />
-          );
-        })}
-      </div>
+
+      {gameAds.data.length !== 0 ? (
+        <div className="grid grid-cols-2 xl:grid-cols-4 gap-6">
+          {gameAds.data.map((ad, index) => {
+            return (
+              <Ad
+                key={index}
+                hoursStart={ad.hoursStart}
+                hoursEnd={ad.hoursEnd}
+                id={ad.id}
+                name={ad.name}
+                useVoiceChannel={ad.useVoiceChannel}
+                weekDays={ad.weekDays}
+                yearPlaying={ad.yearPlaying}
+                createdAt={ad.createdAt}
+                discord={ad.discord}
+                gameId={ad.gameId}
+                userId={ad.userId}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        <h1 className="text-white">Este jogo não possui anúncios.</h1>
+      )}
     </main>
   );
 }
