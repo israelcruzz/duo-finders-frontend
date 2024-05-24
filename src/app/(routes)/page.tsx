@@ -54,13 +54,11 @@ export default async function Home() {
   const famousGames = await fetchFamousGames();
   const recentAds = await fetchRecentAds();
   const games = await fetchGames();
-  
 
   return (
     <main className="w-full h-full px-6 py-4 xl:pl-80 xl:py-4 flex flex-col gap-6">
       <SearchInput />
-
-      <CreateAdPoster games={games} />
+      <CreateAdPoster games={games} session={session} />
 
       <div className="w-full flex flex-col gap-6">
         <div className="w-full flex justify-between items-center">
