@@ -7,6 +7,8 @@ import { IGame } from "@/@types/entities/game";
 import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { LoadingIcon } from "../loading-icon/loading-icon";
+import { api } from "@/services/api";
 
 interface CreateAdModalProps {
   games: IGame[];
@@ -63,10 +65,39 @@ export default function CreateAdModal({ games }: CreateAdModalProps) {
     },
   });
 
-  const handleSubmitForm = (data: formSchemaType) => {
+  const handleSubmitForm = async (data: formSchemaType) => {
     if (weekDays.length === 0) return;
 
-    reset();
+    setLoading(true);
+
+    try {
+      if (session) {
+        await fetch("http://localhost:3333/ad", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${session.token}`,
+          },
+          body: JSON.stringify({
+            name: data.name,
+            yearPlaying: data.yearPlaying,
+            discord: data.discord,
+            weekDays: weekDays.join(""),
+            hoursStart: data.hoursStart,
+            hoursEnd: data.hoursEnd,
+            useVoiceChannel,
+            gameId: data.gameId,
+            userId: session.userApi.id,
+          }),
+        });
+      }
+
+      setLoading(false);
+
+      reset();
+    } catch (error) {
+      console.log("Error in Request: " + error);
+    }
   };
 
   return (
@@ -289,10 +320,11 @@ export default function CreateAdModal({ games }: CreateAdModalProps) {
 
           <button
             type="submit"
-            className="px-5 py-3 flex gap-3 text-white bg-[#650C71] rounded font-bold"
+            disabled={loading}
+            className="px-5 py-3 flex gap-3 text-white bg-[#650C71] rounded font-bold disabled:cursor-not-allowed"
           >
             {loading ? (
-              ""
+              <LoadingIcon />
             ) : (
               <>
                 <IoGameController size={24} />

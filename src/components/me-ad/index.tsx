@@ -25,7 +25,7 @@ export default function MeAd({
 }: MeAdProps) {
 
   const removeAd = async () => {
-    await api.post(`/user/delete/${id}`)
+    await api.delete(`/user/delete/${id}`)
   }
 
   return (
