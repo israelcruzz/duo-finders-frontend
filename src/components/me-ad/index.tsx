@@ -1,6 +1,9 @@
 "use client";
 
 import { api } from "@/services/api";
+import { Session } from "next-auth";
+import { useSession } from "next-auth/react";
+import { toast } from "sonner";
 
 interface MeAdProps {
   id: string;
@@ -23,11 +26,22 @@ export default function MeAd({
   useVoiceChannel,
   gameName,
 }: MeAdProps) {
+  const { data } = useSession();
+
   const removeAd = async () => {
     try {
-      await api.delete(`/user/delete/${id}`);
+      if (data?.token) {
+        await api.delete(`/user/delete/${id}`, {
+          headers: {
+            Authorization: `Bearer ${data.token}`,
+          },
+        });
+
+        toast.success("Anúncio deletado com sucesso");
+      }
     } catch (error) {
       console.log(error);
+      toast.error("Erro no Servidor");
     }
   };
 

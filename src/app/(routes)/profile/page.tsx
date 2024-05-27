@@ -1,5 +1,6 @@
 import { IAd } from "@/@types/entities/ad";
 import MeAd from "@/components/me-ad";
+import { MeAdProvider } from "@/components/me-ad-provider/me-ad-provider";
 import { nextAuthOptions } from "@/lib/next-auth/next-auth-options";
 import { api } from "@/services/api";
 import { getServerSession } from "next-auth";
@@ -62,7 +63,7 @@ export default async function Profile() {
           <div className="grid grid-cols-2 xl:grid-cols-4 gap-6">
             {ads.data.map((ad, index) => {
               return (
-                <MeAd
+                <MeAdProvider
                   id={ad.id}
                   key={index}
                   gameName={ad.name}
@@ -72,6 +73,7 @@ export default async function Profile() {
                   useVoiceChannel={ad.useVoiceChannel}
                   weekDays={ad.weekDays}
                   yearsPlaying={ad.yearPlaying}
+                  session={session}
                 />
               );
             })}
