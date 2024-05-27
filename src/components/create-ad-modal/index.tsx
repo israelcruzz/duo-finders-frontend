@@ -82,7 +82,7 @@ export default function CreateAdModal({ games }: CreateAdModalProps) {
             name: data.name,
             yearPlaying: Number(data.yearPlaying),
             discord: data.discord,
-            weekDays: weekDays.join(""),
+            weekDays: weekDays.join(","),
             hoursStart: Number(data.hoursStart),
             hoursEnd: Number(data.hoursEnd),
             useVoiceChannel,

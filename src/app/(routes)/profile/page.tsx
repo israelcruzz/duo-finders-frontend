@@ -55,7 +55,7 @@ export default async function Profile() {
       </div>
 
       <section className="mt-12 flex flex-col gap-6">
-        <h1 className="text-white text-2xl font-semibold ">Meus Anúncios</h1>
+        <h1 className="text-white text-2xl font-semibold mt-6">Meus Anúncios</h1>
 
         {ads.data.length === 0 ? (
           <h1 className="text-white">Você não possui anúncios.</h1>
