@@ -8,7 +8,9 @@ import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { LoadingIcon } from "../loading-icon/loading-icon";
+import { toast } from "sonner";
 import { api } from "@/services/api";
+import { AxiosError } from "axios";
 
 interface CreateAdModalProps {
   games: IGame[];
@@ -70,33 +72,44 @@ export default function CreateAdModal({ games }: CreateAdModalProps) {
 
     setLoading(true);
 
+    console.log(`Bearer ${session?.token}`);
+
     try {
       if (session) {
-        await fetch("http://localhost:3333/ad", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${session.token}`,
-          },
-          body: JSON.stringify({
+        await api.post(
+          "ad",
+          {
             name: data.name,
-            yearPlaying: data.yearPlaying,
+            yearPlaying: Number(data.yearPlaying),
             discord: data.discord,
             weekDays: weekDays.join(""),
-            hoursStart: data.hoursStart,
-            hoursEnd: data.hoursEnd,
+            hoursStart: Number(data.hoursStart),
+            hoursEnd: Number(data.hoursEnd),
             useVoiceChannel,
             gameId: data.gameId,
             userId: session.userApi.id,
-          }),
-        });
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${session.token}`,
+            },
+          }
+        );
       }
 
+      toast.success("Anúncio Criado!");
       setLoading(false);
 
       reset();
     } catch (error) {
-      console.log("Error in Request: " + error);
+      if (error instanceof AxiosError) {
+        toast.error(error.response?.data.error);
+      } else {
+        toast.error("Erro no Servidor");
+      }
+
+      setLoading(false);
+      console.log(error);
     }
   };
 

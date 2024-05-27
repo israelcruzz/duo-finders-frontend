@@ -20,7 +20,7 @@ export default function ViewDiscordModal({ name }: ViewDiscordModalProps) {
           Adicione no Discord
         </h3>
 
-        <div className="w-full px-4 py-3 bg-[#18181B] text-white text-center">@{name}</div>
+        <div className="w-full px-4 py-3 bg-[#18181B] text-white text-center">{name}</div>
       </div>
     </Dialog.Content>
   );

@@ -27,7 +27,7 @@ export function CreateAdPoster({ games, session }: CreateAdPosterProps) {
         <span>JOGUE COM</span>
         <span>SEU DUO </span>
         <span>AGORA</span>
-      </h1>
+      </h1>                                     
 
       <SessionProvider session={session}>
         <Dialog.Root>

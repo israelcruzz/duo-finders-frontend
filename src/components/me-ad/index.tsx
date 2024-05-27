@@ -10,7 +10,7 @@ interface MeAdProps {
   hourStart: number;
   hourEnd: number;
   useVoiceChannel: boolean;
-  gameName: string
+  gameName: string;
 }
 
 export default function MeAd({
@@ -23,10 +23,13 @@ export default function MeAd({
   useVoiceChannel,
   gameName,
 }: MeAdProps) {
-
   const removeAd = async () => {
-    await api.delete(`/user/delete/${id}`)
-  }
+    try {
+      await api.delete(`/user/delete/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <main className="bg-[#2A2634] px-4 py-6 rounded-lg flex flex-col gap-3">
@@ -59,7 +62,10 @@ export default function MeAd({
           {useVoiceChannel ? "Sim" : "Não"}
         </h1>
       </div>
-      <button className="bg-red-600 w-full py-3 text-white flex items-center justify-center font-semibold rounded-lg" onClick={() => removeAd()}>
+      <button
+        className="bg-red-600 w-full py-3 text-white flex items-center justify-center font-semibold rounded-lg"
+        onClick={() => removeAd()}
+      >
         Apagar
       </button>
     </main>
