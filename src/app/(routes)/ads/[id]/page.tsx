@@ -52,15 +52,15 @@ export default async function ViewAdsForGame({ params }: ViewAdsForGameParams) {
           width={128}
           height={128}
           alt="game"
-          className="w-32 h-32 rounded-full object-cover"
+          className="w-16 h-16 xl:w-32 xl:h-32 rounded-full object-cover"
           quality={100}
         />
 
         <div className="flex flex-col justify-center">
-          <h1 className="text-white font-semibold text-base">
+          <h1 className="text-white font-semibold text-xs  xl:text-base">
             {game.data.name}
           </h1>
-          <h2 className="font-medium text-[#9F9F9F]/60 text-base ">
+          <h2 className="font-medium text-[#9F9F9F]/60 text-[8px] xl:text-base ">
             {game.data.category.name}
           </h2>
         </div>
